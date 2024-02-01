@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+                'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            background-color: #fff;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        #form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        p.name {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            background-color: #3498db;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+            outline: none;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-top: 8px;
+            font-size: 1rem;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        select {
+            appearance: none;
+        }
+
+        input[type="submit"] {
+            background-color: #2ecc71;
+            color: #ffffff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            outline: none;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form-container">
+        <p class="name">Get Started</p>
+        <button onclick="openForm()">Fill this form</button>
+        <script>
+            function openForm() {
+                const formContainer = document.getElementById("form-container");
+                const form = document.createElement("form");
+                form.id = "myForm";
+                form.onsubmit = function () {
+                    validateForm();
+                    return false;
+                };
+
+                function createFormGroup(labelText, inputElement) {
+                    const group = document.createElement("div");
+                    group.classList.add("form-group");
+
+                    const label = document.createElement("label");
+                    label.textContent = labelText;
+                    group.appendChild(label);
+
+                    group.appendChild(inputElement);
+
+                    return group;
+                }
+
+                const nameInput = document.createElement("input");
+                nameInput.type = "text";
+                nameInput.id = "name";
+                nameInput.name = "name";
+                nameInput.required = true;
+
+                const nameGroup = createFormGroup("Name:", nameInput);
+                form.appendChild(nameGroup);
+
+                const addressTextarea = document.createElement("textarea");
+                addressTextarea.id = "address";
+                addressTextarea.name = "address";
+                addressTextarea.rows = "4";
+                addressTextarea.required = true;
+
+                const addressGroup = createFormGroup("Address:", addressTextarea);
+                form.appendChild(addressGroup);
+
+                const gmailInput = document.createElement("input");
+                gmailInput.type = "email";
+                gmailInput.id = "gmail";
+                gmailInput.name = "gmail";
+                gmailInput.required = true;
+
+                const gmailGroup = createFormGroup("Gmail:", gmailInput);
+                form.appendChild(gmailGroup);
+
+                const animalExperienceSelect = document.createElement("select");
+                animalExperienceSelect.id = "animalExperience";
+                animalExperienceSelect.name = "animalExperience";
+
+                const catOption = document.createElement("option");
+                catOption.value = "cat";
+                catOption.textContent = "Cat";
+                animalExperienceSelect.appendChild(catOption);
+
+                const dogOption = document.createElement("option");
+                dogOption.value = "dog";
+                dogOption.textContent = "Dog";
+                animalExperienceSelect.appendChild(dogOption);
+
+                const experienceGroup = createFormGroup("Experience with Animals:", animalExperienceSelect);
+                form.appendChild(experienceGroup);
+
+                const submitInput = document.createElement("input");
+                submitInput.type = "submit";
+                submitInput.value = "Submit";
+
+                form.appendChild(submitInput);
+
+                formContainer.appendChild(form);
+            }
+
+            function validateForm() {
+                // Your validation logic goes here
+                alert("Form submitted!");
+            }
+        </script>
+    </div>
+</body>
+
+</html>
