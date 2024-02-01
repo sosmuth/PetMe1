@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+    <div id="form-container">
+        <p class="name">Get Started</p>
+        <button onclick="openForm()">Fill this form</button>
+        <script src="script.js"></script>
+    </div>
+</body>
+<script>
+   function openForm() {
+    const formContainer = document.getElementById("form-container");
+
+    // Check if a form already exists, remove it before adding a new one
+    const existingForm = document.getElementById("myForm");
+    if (existingForm) {
+        formContainer.removeChild(existingForm);
+    }
+
+    const form = document.createElement("form");
+    form.id = "myForm";
+    form.onsubmit = function () {
+        validateForm();
+        return false;
+    };
+
+    function createFormGroup(labelText, inputElement) {
+        const group = document.createElement("div");
+        group.classList.add("form-group");
+
+        const label = document.createElement("label");
+        label.textContent = labelText;
+        group.appendChild(label);
+
+        group.appendChild(inputElement);
+
+        return group;
+    }
+
+    const nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.id = "name";
+    nameInput.name = "name";
+    nameInput.required = true;
+
+    const nameGroup = createFormGroup("Name:", nameInput);
+    form.appendChild(nameGroup);
+
+    const addressTextarea = document.createElement("textarea");
+    addressTextarea.id = "address";
+    addressTextarea.name = "address";
+    addressTextarea.rows = "4";
+    addressTextarea.required = true;
+
+    const addressGroup = createFormGroup("Address:", addressTextarea);
+    form.appendChild(addressGroup);
+
+    const gmailInput = document.createElement("input");
+    gmailInput.type = "email";
+    gmailInput.id = "gmail";
+    gmailInput.name = "gmail";
+    gmailInput.required = true;
+
+    const gmailGroup = createFormGroup("Gmail:", gmailInput);
+    form.appendChild(gmailGroup);
+
+    const animalExperienceSelect = document.createElement("select");
+    animalExperienceSelect.id = "animalExperience";
+    animalExperienceSelect.name = "animalExperience";
+
+    const catOption = document.createElement("option");
+    catOption.value = "cat";
+    catOption.textContent = "Cat";
+    animalExperienceSelect.appendChild(catOption);
+
+    const dogOption = document.createElement("option");
+    dogOption.value = "dog";
+    dogOption.textContent = "Dog";
+    animalExperienceSelect.appendChild(dogOption);
+
+    const experienceGroup = createFormGroup("Experience with Animals:", animalExperienceSelect);
+    form.appendChild(experienceGroup);
+
+    const submitInput = document.createElement("input");
+    submitInput.type = "submit";
+    submitInput.value = "Submit";
+
+    form.appendChild(submitInput);
+
+    formContainer.appendChild(form);
+}
+
+function validateForm() {
+    // Your validation logic goes here
+
+    // Redirect to index.html
+    window.location.href = 'index.html';
+}
+
+
+
+</script>
+
+</html>
